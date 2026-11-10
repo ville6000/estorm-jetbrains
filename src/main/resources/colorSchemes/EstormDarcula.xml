@@ -1,0 +1,13 @@
+<!-- Hotspots and rules in red and amber that read on a dark background; the rest fall back (EstormColors.kt). -->
+<list>
+  <option name="ESTORM_HOTSPOT">
+    <value>
+      <option name="FOREGROUND" value="ff6b6b"/>
+    </value>
+  </option>
+  <option name="ESTORM_RULE">
+    <value>
+      <option name="FOREGROUND" value="fcc419"/>
+    </value>
+  </option>
+</list>

@@ -1,0 +1,4 @@
+* text=auto eol=lf
+# Windows runs the wrapper script with CRLF line ends.
+*.bat text eol=crlf
+*.jar binary

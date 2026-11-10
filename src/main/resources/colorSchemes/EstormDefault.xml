@@ -1,0 +1,13 @@
+<!-- Hotspots and rules in the board's red and amber; the rest fall back to standard colours (EstormColors.kt). -->
+<list>
+  <option name="ESTORM_HOTSPOT">
+    <value>
+      <option name="FOREGROUND" value="c92a2a"/>
+    </value>
+  </option>
+  <option name="ESTORM_RULE">
+    <value>
+      <option name="FOREGROUND" value="946800"/>
+    </value>
+  </option>
+</list>

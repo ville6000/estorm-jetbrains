@@ -1,0 +1,10 @@
+node_modules/
+build/
+.gradle/
+.kotlin/
+.intellijPlatform/
+
+# OS / editors
+.DS_Store
+.idea/
+*.iml

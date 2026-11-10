@@ -1,0 +1,24 @@
+# estorm releases arrive as their own pull request, so CI tests the bundled
+# server, the preview and the lexer's parity against each one; the other
+# packages come grouped, one pull request per ecosystem.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      tooling:
+        patterns: ['*']
+        exclude-patterns: ['@villev/estorm']
+  - package-ecosystem: gradle
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      gradle:
+        patterns: ['*']
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly

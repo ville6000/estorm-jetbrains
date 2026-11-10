@@ -1,0 +1,52 @@
+<idea-plugin>
+  <id>io.github.ville6000.estorm</id>
+  <name>estorm</name>
+  <vendor url="https://github.com/ville6000/estorm-jetbrains">Ville Viklund</vendor>
+  <description><![CDATA[
+<p>Support for <a href="https://github.com/ville6000/estorm">estorm</a> boards (<code>.estorm</code>),
+a plain-text notation for Event Storming.</p>
+<ul>
+  <li>Each part of a line coloured like the sticky it becomes, with colours of your own in
+    <b>Settings | Editor | Color Scheme | estorm</b></li>
+  <li>Parse errors and modelling warnings as you type</li>
+  <li>Every mention of the event under the caret highlighted</li>
+  <li>Completion of keywords, and of events, aggregates, externals and actors already on the board</li>
+  <li>Go to definition from an event to the steps that produce it, and rename of events, aggregates,
+    externals and actors everywhere on the board</li>
+  <li>A live preview of the board beside the text: click a sticky to select its line; drag to pan;
+    zoom with the toolbar, Ctrl/Cmd + wheel or a pinch; click a section's name to fit it</li>
+  <li>Line comments with <code>#</code>, and matching brackets</li>
+</ul>
+<p>Errors, highlights, completion, go to definition and rename come from estorm's language server, which the
+plugin bundles and runs on Node.js 20 or later. Colours and the preview work without Node.js.</p>
+]]></description>
+
+  <dependencies>
+    <plugin id="com.intellij.modules.lang"/>
+    <plugin id="com.intellij.modules.lsp"/>
+    <module name="intellij.platform.lsp"/>
+    <plugin id="com.intellij.modules.jcef"/>
+    <module name="intellij.platform.ui.jcef"/>
+  </dependencies>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <fileType name="estorm" language="estorm" extensions="estorm" fieldName="INSTANCE"
+              implementationClass="io.github.ville6000.estorm.lang.EstormFileType"/>
+    <lang.parserDefinition language="estorm"
+                           implementationClass="io.github.ville6000.estorm.lang.EstormParserDefinition"/>
+    <lang.syntaxHighlighterFactory language="estorm"
+                                   implementationClass="io.github.ville6000.estorm.lang.EstormSyntaxHighlighterFactory"/>
+    <lang.commenter language="estorm" implementationClass="io.github.ville6000.estorm.lang.EstormCommenter"/>
+    <lang.braceMatcher language="estorm" implementationClass="io.github.ville6000.estorm.lang.EstormBraceMatcher"/>
+    <colorSettingsPage implementation="io.github.ville6000.estorm.lang.EstormColorSettingsPage"/>
+    <additionalTextAttributes scheme="Default" file="colorSchemes/EstormDefault.xml"/>
+    <additionalTextAttributes scheme="Darcula" file="colorSchemes/EstormDarcula.xml"/>
+
+    <fileEditorProvider implementation="io.github.ville6000.estorm.preview.EstormSplitEditorProvider"/>
+
+    <platform.lsp.integrationProvider implementation="io.github.ville6000.estorm.lsp.EstormLspProvider"/>
+    <applicationConfigurable parentId="language" id="io.github.ville6000.estorm.settings" displayName="estorm"
+                             instance="io.github.ville6000.estorm.settings.EstormConfigurable"/>
+    <notificationGroup id="estorm" displayType="BALLOON"/>
+  </extensions>
+</idea-plugin>

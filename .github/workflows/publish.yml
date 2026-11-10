@@ -1,0 +1,41 @@
+name: Publish
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 25
+      - uses: gradle/actions/setup-gradle@v5
+      - run: npm ci --ignore-scripts
+      - name: Check the tag matches gradle.properties
+        run: test "${GITHUB_REF_NAME#v}" = "$(sed -n 's/^pluginVersion *= *//p' gradle.properties)"
+      - run: ./gradlew check
+      # Signs the plugin and uploads it to JetBrains Marketplace.
+      - run: ./gradlew publishPlugin
+        env:
+          PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
+          CERTIFICATE_CHAIN: ${{ secrets.CERTIFICATE_CHAIN }}
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          PRIVATE_KEY_PASSWORD: ${{ secrets.PRIVATE_KEY_PASSWORD }}
+      - name: Create the GitHub release
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          awk -v v="$version" '/^## /{p=($2==v);next} p' CHANGELOG.md > notes.md
+          gh release create "$GITHUB_REF_NAME" "build/distributions/estorm-jetbrains-$version-signed.zip" --notes-file notes.md
+        env:
+          GH_TOKEN: ${{ github.token }}

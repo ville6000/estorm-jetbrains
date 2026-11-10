@@ -1,0 +1,22 @@
+{
+  "name": "estorm-jetbrains",
+  "private": true,
+  "description": "The JavaScript the estorm plugin for JetBrains IDEs ships: the language server and the preview's renderer",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "node esbuild.mjs",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "esbuild": "^0.28.2",
+    "prettier": "^3.9.10",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "@villev/estorm": "^0.21.0"
+  }
+}
