@@ -26,10 +26,19 @@ jobs:
       - run: npm run typecheck
       - run: npm run format:check
       - run: ./gradlew check buildPlugin
+      # GitHub zips an artifact for download, so upload the plugin unzipped: the download is then the
+      # plugin's zip itself, estorm-jetbrains-<version>.zip, ready to install from disk or upload.
+      - name: Unzip the plugin
+        id: plugin
+        run: |
+          cd build/distributions
+          zip=$(ls estorm-jetbrains-*.zip)
+          unzip -q "$zip" -d plugin
+          echo "name=${zip%.zip}" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-artifact@v7
         with:
-          name: plugin
-          path: build/distributions/*.zip
+          name: ${{ steps.plugin.outputs.name }}
+          path: build/distributions/plugin
 
   # Checks the plugin against each IDE in build.gradle.kts's pluginVerification, which it downloads.
   verify:
