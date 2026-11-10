@@ -112,11 +112,16 @@ describes it.
 2. Set `pluginVersion` in `gradle.properties`, commit as "Release
    &lt;version&gt;", tag `v<version>` and `git push --follow-tags`.
 
-The tag runs `.github/workflows/publish.yml`. It checks the plugin, signs it
-and publishes it to JetBrains Marketplace, using the `PUBLISH_TOKEN`,
-`CERTIFICATE_CHAIN`, `PRIVATE_KEY` and `PRIVATE_KEY_PASSWORD` secrets. Then
-it creates a GitHub release with the signed zip and the changelog section.
-Marketplace needs the plugin's first version uploaded by hand.
+The tag runs `.github/workflows/publish.yml`. It checks the plugin and
+publishes it to JetBrains Marketplace with the `PUBLISH_TOKEN` secret, a
+token from your Marketplace profile. Then it creates a GitHub release with
+the zip and the changelog section. Marketplace needs the plugin's first
+version uploaded by hand.
+
+Signing is optional, since Marketplace signs every plugin itself. To sign
+it as well, add the `CERTIFICATE_CHAIN`, `PRIVATE_KEY` and
+`PRIVATE_KEY_PASSWORD` secrets; see JetBrains'
+[plugin signing](https://plugins.jetbrains.com/docs/intellij/plugin-signing.html).
 
 ## License
 
