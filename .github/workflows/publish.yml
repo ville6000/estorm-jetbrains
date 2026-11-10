@@ -20,7 +20,7 @@ jobs:
         with:
           distribution: temurin
           java-version: 25
-      - uses: gradle/actions/setup-gradle@v5
+      - uses: gradle/actions/setup-gradle@v6
       - run: npm ci --ignore-scripts
       - name: Check the tag matches gradle.properties
         run: test "${GITHUB_REF_NAME#v}" = "$(sed -n 's/^pluginVersion *= *//p' gradle.properties)"
