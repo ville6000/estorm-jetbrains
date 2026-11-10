@@ -1,0 +1,4 @@
+- [ ] `./gradlew check` passes
+- [ ] `npm run typecheck` and `npm run format:check` pass
+- [ ] Lexer changes follow estorm's `src/highlight.ts`, and `TokenParityTest` passes
+- [ ] User-facing changes are in `CHANGELOG.md` under the next version

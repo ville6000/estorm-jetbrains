@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Notation, rendering or language server
+    url: https://github.com/ville6000/estorm/issues/new/choose
+    about: The same in estorm's browser editor or command line? Then it belongs in estorm, which this plugin bundles.

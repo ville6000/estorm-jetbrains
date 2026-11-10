@@ -7,10 +7,10 @@ which lacks the IDE's language server support.
 
 [![CI](https://github.com/ville6000/estorm-jetbrains/actions/workflows/ci.yml/badge.svg)](https://github.com/ville6000/estorm-jetbrains/actions/workflows/ci.yml)
 
-Install it from JetBrains Marketplace: **Settings | Plugins | Marketplace**,
-search for _estorm_. Or download the zip from a
-[release](https://github.com/ville6000/estorm-jetbrains/releases) and use
-**Install Plugin from Disk…** under the gear icon there.
+It isn't on JetBrains Marketplace yet. Until then, build it (see
+[Development](#development)) and install
+`build/distributions/estorm-jetbrains-<version>.zip` with **Settings |
+Plugins**, the gear icon, **Install Plugin from Disk…**
 
 - Each part of a line coloured like the sticky it becomes
 - Parse errors and modelling warnings as you type
