@@ -5,12 +5,11 @@ a plain-text notation for Event Storming, in IntelliJ IDEA, WebStorm, Rider,
 PyCharm and the other JetBrains IDEs, 2026.2 or later. Not in Android Studio,
 which lacks the IDE's language server support.
 
+[![JetBrains Marketplace](https://img.shields.io/jetbrains/plugin/v/35971)](https://plugins.jetbrains.com/plugin/35971-estorm)
 [![CI](https://github.com/ville6000/estorm-jetbrains/actions/workflows/ci.yml/badge.svg)](https://github.com/ville6000/estorm-jetbrains/actions/workflows/ci.yml)
 
-It isn't on JetBrains Marketplace yet. Until then, build it (see
-[Development](#development)) and install
-`build/distributions/estorm-jetbrains-<version>.zip` with **Settings |
-Plugins**, the gear icon, **Install Plugin from Disk…**
+Install it from [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/35971-estorm):
+**Settings | Plugins | Marketplace**, search for estorm.
 
 - Each part of a line coloured like the sticky it becomes
 - Parse errors and modelling warnings as you type
@@ -115,8 +114,7 @@ describes it.
 The tag runs `.github/workflows/publish.yml`. It checks the plugin and
 publishes it to JetBrains Marketplace with the `PUBLISH_TOKEN` secret, a
 token from your Marketplace profile. Then it creates a GitHub release with
-the zip and the changelog section. Marketplace needs the plugin's first
-version uploaded by hand.
+the zip and the changelog section.
 
 Signing is optional, since Marketplace signs every plugin itself. To sign
 it as well, add the `CERTIFICATE_CHAIN`, `PRIVATE_KEY` and
